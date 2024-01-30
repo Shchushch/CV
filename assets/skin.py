@@ -2,8 +2,8 @@
 import torch
 from torchvision import transforms
 from torchvision.models import VGG19_BN_Weights, vgg19_bn
-
-model =torch.load('assets/skin.pth')
+DEVICE='cpu'
+model =torch.load('assets/skin.pth',map_location=DEVICE)
 #print(torch.load('assets/weights.pth'))
 # model=vgg19_bn()
 # print(torch.load('assets/model.pth'))

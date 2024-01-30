@@ -1,6 +1,6 @@
 import torch
 import pandas as pd
-from transformers import AutoTokenizer, AutoModel,BertTokenizer,BertModel
+from transformers import AutoTokenizer, AutoModel
 import numpy as np
 import pickle
 # import sklearn
@@ -13,7 +13,7 @@ from nltk.tag import pos_tag
 from nltk.corpus import stopwords
 from pymystem3 import Mystem
 from functools import lru_cache
-import string
+
 import faiss
 from tqdm import tqdm
 DEVICE='cpu'
