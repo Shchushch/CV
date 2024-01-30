@@ -20,7 +20,8 @@ def get_evil(img):
     
     input_image = transform(img).unsqueeze(0) # Добавьте размерность пакета (batch dimension)
     
-    device = torch.device("cuda" if torch.cuda.is_available() else 'cpu')
+    device = 'cpu'
+    #torch.device("cuda" if torch.cuda.is_available() else 'cpu')
     model.to(device)
     model.eval()
     input_image = input_image.to(device)

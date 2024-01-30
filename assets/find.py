@@ -5,6 +5,7 @@ import numpy as np
 import pickle
 # import sklearn
 import nltk
+nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
@@ -15,6 +16,7 @@ from functools import lru_cache
 import string
 import faiss
 from tqdm import tqdm
+DEVICE='cpu'
 tokenizer =  AutoTokenizer.from_pretrained("cointegrated/rubert-tiny2")
 model = AutoModel.from_pretrained("cointegrated/rubert-tiny2")
 eng_stop_words = stopwords.words('english')
@@ -42,7 +44,7 @@ def embed_bert_cls(text, model=model, tokenizer=tokenizer)->np.array:
     # Отключаем вычисление градиентов
     with torch.no_grad():
         # Пропускаем тензоры через модель
-        model_output = model(**{k: v.to(model.device) for k, v in t.items()})
+        model_output = model(**{k: v.to(DEVICE) for k, v in t.items()})
 
     # Извлекаем последний скрытый состояние из выходных данных модели
     embeddings = model_output.last_hidden_state[:, 0, :]
